@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>中国古代建筑成就</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,17 +28,68 @@
             background-color: var(--cream);
             color: var(--ink-black);
             line-height: 1.8;
+            overflow-x: hidden;
         }
 
-        /* 导航栏 */
+        /* ===== 导航栏 ===== */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
             background: linear-gradient(135deg, var(--primary-red) 0%, #6B0000 100%);
-            padding: 15px 0;
+            padding: 12px 0;
             z-index: 1000;
             box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .nav-brand {
+            color: var(--gold);
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        /* 汉堡菜单按钮 */
+        .menu-toggle {
+            display: none;
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--gold);
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
         }
 
         nav ul {
@@ -46,20 +97,22 @@
             justify-content: center;
             list-style: none;
             flex-wrap: wrap;
+            transition: all 0.3s;
         }
 
         nav li {
-            margin: 0 20px;
+            margin: 0 18px;
         }
 
         nav a {
             color: var(--gold);
             text-decoration: none;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 500;
             transition: all 0.3s;
-            padding: 8px 16px;
+            padding: 8px 14px;
             border-radius: 4px;
+            display: block;
         }
 
         nav a:hover {
@@ -67,9 +120,10 @@
             transform: translateY(-2px);
         }
 
-        /* Hero区域 */
+        /* ===== Hero区域 ===== */
         .hero {
             min-height: 100vh;
+            min-height: 100dvh;
             background: linear-gradient(135deg, rgba(139, 0, 0, 0.9) 0%, rgba(61, 41, 20, 0.9) 100%),
                         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="none" stroke="%23D4AF37" stroke-width="0.5" opacity="0.3" x="0" y="0" width="100" height="100"/><path d="M0,50 Q25,30 50,50 T100,50" fill="none" stroke="%23D4AF37" stroke-width="0.3" opacity="0.2"/></svg>');
             display: flex;
@@ -77,17 +131,17 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 100px 20px 50px;
+            padding: 100px 20px 60px;
             position: relative;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            bottom: 20px;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
             border: 2px solid var(--gold);
             opacity: 0.3;
             pointer-events: none;
@@ -95,40 +149,41 @@
 
         .hero h1 {
             font-family: 'Ma Shan Zheng', cursive;
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: var(--gold);
             text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
-            margin-bottom: 20px;
-            letter-spacing: 8px;
+            margin-bottom: 18px;
+            letter-spacing: 6px;
         }
 
         .hero .subtitle {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: #fff;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-weight: 400;
         }
 
         .hero .theme {
-            font-size: 1.2rem;
+            font-size: 1.05rem;
             color: rgba(255,255,255,0.9);
             max-width: 800px;
-            padding: 20px 40px;
+            padding: 18px 30px;
             border-top: 1px solid var(--gold);
             border-bottom: 1px solid var(--gold);
-            margin-top: 30px;
+            margin-top: 25px;
+            line-height: 1.8;
         }
 
         .scroll-indicator {
             position: absolute;
-            bottom: 30px;
+            bottom: 25px;
             animation: bounce 2s infinite;
         }
 
         .scroll-indicator span {
             display: block;
-            width: 30px;
-            height: 50px;
+            width: 26px;
+            height: 42px;
             border: 2px solid var(--gold);
             border-radius: 15px;
             position: relative;
@@ -140,8 +195,8 @@
             top: 8px;
             left: 50%;
             transform: translateX(-50%);
-            width: 6px;
-            height: 6px;
+            width: 5px;
+            height: 5px;
             background: var(--gold);
             border-radius: 50%;
             animation: scroll 2s infinite;
@@ -158,21 +213,21 @@
             100% { opacity: 0; top: 30px; }
         }
 
-        /* 通用区块样式 */
+        /* ===== 通用区块样式 ===== */
         section {
-            padding: 100px 20px;
+            padding: 80px 20px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
         .section-number {
             font-family: 'Ma Shan Zheng', cursive;
-            font-size: 5rem;
+            font-size: 4.5rem;
             color: var(--primary-red);
             opacity: 0.2;
             line-height: 1;
@@ -180,26 +235,26 @@
 
         .section-title {
             font-family: 'Ma Shan Zheng', cursive;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--dark-brown);
-            margin-top: -30px;
-            margin-bottom: 15px;
+            margin-top: -28px;
+            margin-bottom: 12px;
         }
 
         .section-subtitle {
             color: #666;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
-        /* 建筑成就板块 */
+        /* ===== 建筑成就板块 ===== */
         .achievements {
             background: linear-gradient(180deg, var(--cream) 0%, #fff 100%);
         }
 
         .achievement-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         .achievement-card {
@@ -212,38 +267,39 @@
         }
 
         .achievement-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
 
         .achievement-image {
-            height: 200px;
+            height: 180px;
             background: linear-gradient(135deg, var(--dark-brown) 0%, var(--primary-red) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: var(--gold);
         }
 
         .achievement-content {
-            padding: 25px;
+            padding: 22px;
         }
 
         .achievement-content h3 {
             color: var(--primary-red);
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 10px;
             border-left: 4px solid var(--gold);
-            padding-left: 15px;
+            padding-left: 14px;
         }
 
         .achievement-content p {
             color: #555;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
+            line-height: 1.7;
         }
 
-        /* 科学家板块 */
+        /* ===== 科学家板块 ===== */
         .scientists {
             background: linear-gradient(180deg, #fff 0%, var(--cream) 100%);
         }
@@ -268,7 +324,7 @@
             justify-content: flex-end;
             padding-right: 50%;
             position: relative;
-            margin-bottom: 50px;
+            margin-bottom: 45px;
         }
 
         .scientist-item:nth-child(even) {
@@ -279,11 +335,11 @@
 
         .scientist-content {
             background: #fff;
-            padding: 25px 30px;
+            padding: 22px 26px;
             border-radius: 8px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            max-width: 450px;
-            margin: 0 30px;
+            max-width: 430px;
+            margin: 0 28px;
             position: relative;
             border: 1px solid rgba(212, 175, 55, 0.3);
         }
@@ -291,53 +347,54 @@
         .scientist-content::before {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             background: var(--gold);
             border-radius: 50%;
-            top: 30px;
+            top: 28px;
         }
 
         .scientist-item:nth-child(odd) .scientist-content::before {
-            right: -40px;
+            right: -37px;
         }
 
         .scientist-item:nth-child(even) .scientist-content::before {
-            left: -40px;
+            left: -37px;
         }
 
         .scientist-content h3 {
             color: var(--primary-red);
-            font-size: 1.4rem;
-            margin-bottom: 5px;
+            font-size: 1.3rem;
+            margin-bottom: 4px;
         }
 
         .scientist-era {
             color: var(--gold);
-            font-size: 0.9rem;
-            margin-bottom: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
         }
 
         .scientist-content p {
             color: #555;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
+            line-height: 1.7;
         }
 
-        /* 著作板块 */
+        /* ===== 著作板块 ===== */
         .books {
             background: linear-gradient(180deg, var(--cream) 0%, #fff 100%);
         }
 
         .books-showcase {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 35px;
         }
 
         .book-card {
             background: #fff;
             border-radius: 8px;
-            padding: 30px;
+            padding: 28px 22px;
             text-align: center;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             transition: all 0.3s;
@@ -350,37 +407,38 @@
         }
 
         .book-icon {
-            width: 80px;
-            height: 100px;
+            width: 70px;
+            height: 90px;
             background: linear-gradient(135deg, var(--dark-brown) 0%, var(--primary-red) 100%);
-            margin: 0 auto 20px;
+            margin: 0 auto 18px;
             border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--gold);
-            font-size: 2rem;
+            font-size: 1.8rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .book-card h3 {
             color: var(--primary-red);
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
         }
 
         .book-author {
             color: var(--gold);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
         }
 
         .book-card p {
             color: #555;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
+            line-height: 1.7;
         }
 
-        /* 文化板块 */
+        /* ===== 文化板块 ===== */
         .culture {
             background: linear-gradient(180deg, #fff 0%, var(--cream) 100%);
         }
@@ -388,7 +446,7 @@
         .culture-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
+            gap: 25px;
         }
 
         .culture-item {
@@ -401,37 +459,38 @@
         }
 
         .culture-visual {
-            width: 150px;
+            width: 140px;
             background: linear-gradient(135deg, var(--jade) 0%, var(--dark-brown) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
+            font-size: 2.8rem;
             color: var(--gold);
             flex-shrink: 0;
         }
 
         .culture-content {
-            padding: 25px;
+            padding: 22px;
             flex: 1;
         }
 
         .culture-content h3 {
             color: var(--primary-red);
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+            font-size: 1.15rem;
+            margin-bottom: 8px;
         }
 
         .culture-content p {
             color: #555;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
+            line-height: 1.7;
         }
 
-        /* 页脚 */
+        /* ===== 页脚 ===== */
         footer {
             background: var(--dark-brown);
             color: var(--cream);
-            padding: 60px 20px 30px;
+            padding: 50px 20px 25px;
             text-align: center;
         }
 
@@ -442,62 +501,232 @@
 
         .footer-title {
             font-family: 'Ma Shan Zheng', cursive;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--gold);
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .footer-info {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             opacity: 0.8;
         }
 
         .footer-divider {
-            width: 100px;
+            width: 80px;
             height: 2px;
             background: var(--gold);
-            margin: 30px auto;
+            margin: 25px auto;
         }
 
         .copyright {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             opacity: 0.6;
         }
 
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-                letter-spacing: 4px;
-            }
+        /* ===== 装饰元素 ===== */
+        .decoration-pattern {
+            position: fixed;
+            width: 180px;
+            height: 180px;
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: -1;
+        }
 
-            .hero .subtitle {
-                font-size: 1.1rem;
-            }
+        .pattern-1 {
+            top: 8%;
+            right: 3%;
+            background: radial-gradient(circle, var(--primary-red) 0%, transparent 70%);
+        }
 
-            nav li {
-                margin: 5px 10px;
-            }
+        .pattern-2 {
+            bottom: 15%;
+            left: 3%;
+            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+        }
 
+        /* ===== 移动端导航遮罩 ===== */
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        /* ===== 响应式设计 ===== */
+
+        /* 平板端 */
+        @media (max-width: 1024px) {
             .scientist-timeline::before {
-                left: 20px;
+                left: 30px;
             }
 
             .scientist-item,
             .scientist-item:nth-child(even) {
                 justify-content: flex-start;
-                padding-left: 50px;
+                padding-left: 60px;
                 padding-right: 0;
+            }
+
+            .scientist-content {
+                max-width: 100%;
+                margin: 0;
             }
 
             .scientist-content::before,
             .scientist-item:nth-child(even) .scientist-content::before {
-                left: -35px;
+                left: -29px;
                 right: auto;
+            }
+        }
+
+        /* 手机端 */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-brand {
+                display: block;
+                margin: 0 auto;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 75%;
+                max-width: 300px;
+                height: 100vh;
+                height: 100dvh;
+                background: linear-gradient(180deg, var(--primary-red) 0%, #4a0000 100%);
+                flex-direction: column;
+                padding: 70px 0 30px;
+                transition: left 0.35s ease;
+                box-shadow: 5px 0 20px rgba(0,0,0,0.3);
+                z-index: 1000;
+            }
+
+            nav ul.open {
+                left: 0;
+            }
+
+            nav li {
+                margin: 0;
+                width: 100%;
+            }
+
+            nav a {
+                padding: 14px 24px;
+                font-size: 16px;
+                border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+                border-radius: 0;
+            }
+
+            nav a:hover {
+                background: rgba(212, 175, 55, 0.15);
+                transform: none;
+                padding-left: 32px;
+            }
+
+            .hero {
+                padding: 90px 16px 50px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+                letter-spacing: 3px;
+            }
+
+            .hero .subtitle {
+                font-size: 1.05rem;
+            }
+
+            .hero .theme {
+                font-size: 0.9rem;
+                padding: 14px 18px;
+            }
+
+            .hero::before {
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+            }
+
+            .scroll-indicator {
+                bottom: 18px;
+            }
+
+            section {
+                padding: 60px 16px;
+            }
+
+            .section-number {
+                font-size: 3.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+                margin-top: -22px;
+            }
+
+            .section-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .achievement-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .achievement-image {
+                height: 150px;
+                font-size: 3rem;
+            }
+
+            .scientist-timeline::before {
+                left: 18px;
+            }
+
+            .scientist-item,
+            .scientist-item:nth-child(even) {
+                justify-content: flex-start;
+                padding-left: 44px;
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .scientist-content {
+                padding: 18px 18px;
+                margin: 0;
+                max-width: 100%;
+            }
+
+            .scientist-content::before,
+            .scientist-item:nth-child(even) .scientist-content::before {
+                left: -26px;
+                right: auto;
+                width: 14px;
+                height: 14px;
+            }
+
+            .scientist-content h3 {
+                font-size: 1.15rem;
+            }
+
+            .books-showcase {
+                grid-template-columns: 1fr;
+                gap: 25px;
             }
 
             .culture-grid {
                 grid-template-columns: 1fr;
+                gap: 18px;
             }
 
             .culture-item {
@@ -506,34 +735,71 @@
 
             .culture-visual {
                 width: 100%;
-                height: 120px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+
+            .footer-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* 小屏手机端 */
+        @media (max-width: 420px) {
+            .hero h1 {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+
+            .hero .subtitle {
+                font-size: 0.95rem;
+            }
+
+            .hero .theme {
+                font-size: 0.82rem;
+                padding: 12px 14px;
+            }
+
+            .section-number {
+                font-size: 3rem;
             }
 
             .section-title {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
+            }
+
+            .achievement-content h3,
+            .book-card h3,
+            .culture-content h3 {
+                font-size: 1.05rem;
+            }
+
+            .achievement-content p,
+            .scientist-content p,
+            .book-card p,
+            .culture-content p {
+                font-size: 0.85rem;
             }
         }
 
-        /* 装饰元素 */
-        .decoration-pattern {
-            position: fixed;
-            width: 200px;
-            height: 200px;
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: -1;
+        /* 滚动动画初始状态 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        .pattern-1 {
-            top: 10%;
-            right: 5%;
-            background: radial-gradient(circle, var(--primary-red) 0%, transparent 70%);
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .pattern-2 {
-            bottom: 20%;
-            left: 5%;
-            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+        /* 触摸优化 */
+        @media (hover: none) {
+            .achievement-card:hover,
+            .book-card:hover {
+                transform: none;
+            }
         }
     </style>
 </head>
@@ -542,15 +808,26 @@
     <div class="decoration-pattern pattern-1"></div>
     <div class="decoration-pattern pattern-2"></div>
 
+    <!-- 导航遮罩 -->
+    <div class="nav-overlay" id="navOverlay"></div>
+
     <!-- 导航栏 -->
     <nav>
-        <ul>
-            <li><a href="#home">首页</a></li>
-            <li><a href="#achievements">建筑成就</a></li>
-            <li><a href="#scientists">杰出科学家</a></li>
-            <li><a href="#books">建筑著作</a></li>
-            <li><a href="#culture">建筑文化</a></li>
-        </ul>
+        <div class="nav-container">
+            <button class="menu-toggle" id="menuToggle" aria-label="菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <span class="nav-brand">古建筑成就</span>
+            <ul id="navMenu">
+                <li><a href="#home" onclick="closeMenu()">首页</a></li>
+                <li><a href="#achievements" onclick="closeMenu()">建筑成就</a></li>
+                <li><a href="#scientists" onclick="closeMenu()">杰出科学家</a></li>
+                <li><a href="#books" onclick="closeMenu()">建筑著作</a></li>
+                <li><a href="#culture" onclick="closeMenu()">建筑文化</a></li>
+            </ul>
+        </div>
     </nav>
 
     <!-- Hero区域 -->
@@ -574,43 +851,43 @@
             <p class="section-subtitle">弘扬中华优秀自然科学成就</p>
         </div>
         <div class="achievement-grid">
-            <div class="achievement-card">
-                <div class="achievement-image">🏛️</div>
+            <div class="achievement-card fade-in">
+                <div class="achievement-image">&#127963;</div>
                 <div class="achievement-content">
                     <h3>木构架体系</h3>
                     <p>中国古建筑以木构架为主要结构方式，形成了抬梁式、穿斗式、井干式三大体系。这种结构具有抗震性能好、施工便捷、适应性强等特点，体现了中国古代工匠的高超智慧。</p>
                 </div>
             </div>
-            <div class="achievement-card">
-                <div class="achievement-image">🏗️</div>
+            <div class="achievement-card fade-in">
+                <div class="achievement-image">&#128507;</div>
                 <div class="achievement-content">
                     <h3>斗拱技术</h3>
                     <p>斗拱是中国古建筑特有的构件，位于柱顶与梁枋之间，具有承重、减震、装饰等多重功能。其精巧的结构设计展现了中国古代力学和数学的高度成就。</p>
                 </div>
             </div>
-            <div class="achievement-card">
-                <div class="achievement-image">🌉</div>
+            <div class="achievement-card fade-in">
+                <div class="achievement-image">&#127749;</div>
                 <div class="achievement-content">
                     <h3>桥梁工程</h3>
                     <p>从赵州桥到卢沟桥，中国古代桥梁建筑技术领先世界。敞肩拱、薄墩设计等创新技术，展现了中国古代工程师在结构力学和材料科学方面的卓越成就。</p>
                 </div>
             </div>
-            <div class="achievement-card">
-                <div class="achievement-image">🏯</div>
+            <div class="achievement-card fade-in">
+                <div class="achievement-image">&#127967;</div>
                 <div class="achievement-content">
                     <h3>城市规划</h3>
                     <p>从《考工记》到明清北京城，中国古代城市规划体现了"天人合一"的哲学思想。中轴线布局、里坊制度、风水理念等构成了独特的城市营造体系。</p>
                 </div>
             </div>
-            <div class="achievement-card">
-                <div class="achievement-image">🎨</div>
+            <div class="achievement-card fade-in">
+                <div class="achievement-image">&#127912;</div>
                 <div class="achievement-content">
                     <h3>建筑装饰</h3>
                     <p>彩画、雕刻、琉璃、砖雕等装饰艺术，不仅具有美学价值，更蕴含防火、防腐等科学功能。和玺彩画、旋子彩画等形成了严格的等级制度。</p>
                 </div>
             </div>
-            <div class="achievement-card">
-                <div class="achievement-image">🔥</div>
+            <div class="achievement-card fade-in">
+                <div class="achievement-image">&#128293;</div>
                 <div class="achievement-content">
                     <h3>防火技术</h3>
                     <p>中国古代建筑发展了完善的防火体系，包括防火墙、水缸设置、材料处理等技术。故宫的鎏金铜缸、山墙的封火设计都是防火智慧的体现。</p>
@@ -627,35 +904,35 @@
             <p class="section-subtitle">弘扬中华优秀古建筑科学家精神</p>
         </div>
         <div class="scientist-timeline">
-            <div class="scientist-item">
+            <div class="scientist-item fade-in">
                 <div class="scientist-content">
                     <h3>鲁班</h3>
                     <p class="scientist-era">春秋时期（约公元前507年-前444年）</p>
                     <p>被尊为中国建筑鼻祖和木匠祖师。传说他发明了锯子、刨子、墨斗等木工工具，创造了云梯、钩拒等器械。其创新精神和技术成就影响了中国建筑数千年。</p>
                 </div>
             </div>
-            <div class="scientist-item">
+            <div class="scientist-item fade-in">
                 <div class="scientist-content">
                     <h3>宇文恺</h3>
                     <p class="scientist-era">隋朝（555年-612年）</p>
                     <p>隋代著名建筑学家，主持规划了大兴城（长安）和东都洛阳。他精通建筑、城市规划、水利工程，著有《东都图记》，是中国古代城市规划的奠基人之一。</p>
                 </div>
             </div>
-            <div class="scientist-item">
+            <div class="scientist-item fade-in">
                 <div class="scientist-content">
                     <h3>李春</h3>
                     <p class="scientist-era">隋朝（约6世纪末-7世纪初）</p>
                     <p>隋代杰出工匠，设计建造了举世闻名的赵州桥（安济桥）。这座世界上现存最古老的单孔敞肩石拱桥，历经1400余年依然屹立，是世界桥梁史上的奇迹。</p>
                 </div>
             </div>
-            <div class="scientist-item">
+            <div class="scientist-item fade-in">
                 <div class="scientist-content">
                     <h3>李诫</h3>
                     <p class="scientist-era">北宋（1035年-1110年）</p>
                     <p>北宋著名建筑师，编修《营造法式》。这部建筑学巨著系统总结了中国古代建筑技术，是中国古代最完整的建筑技术专著，对后世影响深远。</p>
                 </div>
             </div>
-            <div class="scientist-item">
+            <div class="scientist-item fade-in">
                 <div class="scientist-content">
                     <h3>蒯祥</h3>
                     <p class="scientist-era">明代（1398年-1481年）</p>
@@ -673,38 +950,38 @@
             <p class="section-subtitle">弘扬中华优秀古建筑学专著</p>
         </div>
         <div class="books-showcase">
-            <div class="book-card">
-                <div class="book-icon">📜</div>
+            <div class="book-card fade-in">
+                <div class="book-icon">&#128220;</div>
                 <h3>《考工记》</h3>
                 <p class="book-author">春秋战国时期</p>
                 <p>中国最早的手工业技术文献，其中"匠人营国"一节记载了中国古代城市规划和建筑制度，提出了"左祖右社，面朝后市"的城市布局原则。</p>
             </div>
-            <div class="book-card">
-                <div class="book-icon">📖</div>
+            <div class="book-card fade-in">
+                <div class="book-icon">&#128214;</div>
                 <h3>《营造法式》</h3>
                 <p class="book-author">李诫 · 北宋</p>
                 <p>中国古代最完整的建筑技术专著，共34卷。详细规定了建筑设计、施工、材料的规范标准，包括大木作、小木作、石作、瓦作等13个工种。</p>
             </div>
-            <div class="book-card">
-                <div class="book-icon">📚</div>
+            <div class="book-card fade-in">
+                <div class="book-icon">&#128218;</div>
                 <h3>《园冶》</h3>
                 <p class="book-author">计成 · 明代</p>
                 <p>中国最早的园林艺术专著，共3卷。系统论述了园林设计的理论和技法，提出"虽由人作，宛自天开"的设计理念，是世界园林学的经典之作。</p>
             </div>
-            <div class="book-card">
-                <div class="book-icon">📕</div>
+            <div class="book-card fade-in">
+                <div class="book-icon">&#128215;</div>
                 <h3>《工程做法则例》</h3>
                 <p class="book-author">清工部 · 清代</p>
                 <p>清代官方颁布的建筑工程规范，共74卷。详细规定了清代建筑的形制、做法和工料标准，是研究清代建筑的重要文献。</p>
             </div>
-            <div class="book-card">
-                <div class="book-icon">📗</div>
+            <div class="book-card fade-in">
+                <div class="book-icon">&#128217;</div>
                 <h3>《鲁班经》</h3>
                 <p class="book-author">明代</p>
                 <p>民间建筑工匠的实用手册，记载了房屋建造、家具制作、风水择日等内容。反映了民间建筑技术的传承，是研究民间建筑的重要资料。</p>
             </div>
-            <div class="book-card">
-                <div class="book-icon">📘</div>
+            <div class="book-card fade-in">
+                <div class="book-icon">&#128216;</div>
                 <h3>《长物志》</h3>
                 <p class="book-author">文震亨 · 明代</p>
                 <p>明代生活美学著作，其中室庐、花木、水石等卷涉及园林建筑。体现了明代文人对建筑环境的审美追求，是中国建筑美学的重要文献。</p>
@@ -720,43 +997,43 @@
             <p class="section-subtitle">弘扬中华优秀古建筑文明和文化传承</p>
         </div>
         <div class="culture-grid">
-            <div class="culture-item">
-                <div class="culture-visual">☯️</div>
+            <div class="culture-item fade-in">
+                <div class="culture-visual">&#9775;</div>
                 <div class="culture-content">
                     <h3>天人合一</h3>
                     <p>中国古代建筑追求人与自然的和谐统一。建筑选址讲究风水，布局顺应自然，材料取自天然，体现了"天人合一"的哲学思想。</p>
                 </div>
             </div>
-            <div class="culture-item">
-                <div class="culture-visual">⚖️</div>
+            <div class="culture-item fade-in">
+                <div class="culture-visual">&#9878;</div>
                 <div class="culture-content">
                     <h3>礼制秩序</h3>
                     <p>建筑是礼制的重要载体。从皇宫的九开间到民居的三合院，建筑的规模、形制、色彩都有严格的等级规定，体现了中国传统社会的伦理秩序。</p>
                 </div>
             </div>
-            <div class="culture-item">
-                <div class="culture-visual">🎭</div>
+            <div class="culture-item fade-in">
+                <div class="culture-visual">&#127917;</div>
                 <div class="culture-content">
                     <h3>吉祥寓意</h3>
                     <p>建筑装饰蕴含丰富的吉祥寓意。龙凤呈祥、松鹤延年、蝙蝠献瑞等图案，以及"四水归堂"、"步步高升"等空间设计，寄托着人们对美好生活的向往。</p>
                 </div>
             </div>
-            <div class="culture-item">
-                <div class="culture-visual">🏮</div>
+            <div class="culture-item fade-in">
+                <div class="culture-visual">&#127984;</div>
                 <div class="culture-content">
                     <h3>工匠精神</h3>
                     <p>"精益求精、一丝不苟"的工匠精神是中国建筑文化的核心。从选材到施工，每一个环节都追求极致，创造了无数建筑奇迹。</p>
                 </div>
             </div>
-            <div class="culture-item">
-                <div class="culture-visual">🌸</div>
+            <div class="culture-item fade-in">
+                <div class="culture-visual">&#127800;</div>
                 <div class="culture-content">
                     <h3>诗画意境</h3>
                     <p>中国园林建筑追求诗画般的意境。借景、框景、对景等手法，将自然山水浓缩于方寸之间，创造出"咫尺山林"的艺术效果。</p>
                 </div>
             </div>
-            <div class="culture-item">
-                <div class="culture-visual">🐉</div>
+            <div class="culture-item fade-in">
+                <div class="culture-visual">&#128012;</div>
                 <div class="culture-content">
                     <h3>民族融合</h3>
                     <p>中国古代建筑是各民族文化交流融合的产物。汉族与少数民族的建筑技艺相互借鉴，形成了丰富多样的建筑风格。</p>
@@ -778,56 +1055,80 @@
     </footer>
 
     <script>
-        // 平滑滚动
+        // ===== 移动端菜单 =====
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const navOverlay = document.getElementById('navOverlay');
+
+        function openMenu() {
+            navMenu.classList.add('open');
+            navOverlay.style.display = 'block';
+            menuToggle.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            navMenu.classList.remove('open');
+            navOverlay.style.display = 'none';
+            menuToggle.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        menuToggle.addEventListener('click', function() {
+            if (navMenu.classList.contains('open')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        navOverlay.addEventListener('click', closeMenu);
+
+        // ===== 平滑滚动 =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPos = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    window.scrollTo({
+                        top: targetPos,
+                        behavior: 'smooth'
                     });
                 }
             });
         });
 
-        // 导航栏滚动效果
-        let lastScroll = 0;
+        // ===== 导航栏滚动效果 =====
         const nav = document.querySelector('nav');
 
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 100) {
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 80) {
                 nav.style.background = 'rgba(139, 0, 0, 0.95)';
             } else {
-                nav.style.background = 'linear-gradient(135deg, var(--primary-red) 0%, #6B0000 100%)';
+                nav.style.background = '';
             }
-            
-            lastScroll = currentScroll;
         });
 
-        // 滚动动画
+        // ===== 滚动动画（优化版）=====
+        const fadeEls = document.querySelectorAll('.fade-in');
+
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            rootMargin: '0px 0px -40px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
-        // 为卡片添加动画
-        document.querySelectorAll('.achievement-card, .scientist-item, .book-card, .culture-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        fadeEls.forEach(el => {
             observer.observe(el);
         });
     </script>
